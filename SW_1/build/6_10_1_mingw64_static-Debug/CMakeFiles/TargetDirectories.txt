@@ -1,0 +1,7 @@
+C:/LABI/SW_1/SW_1/build/6_10_1_mingw64_static-Debug/CMakeFiles/SW_1.dir
+C:/LABI/SW_1/SW_1/build/6_10_1_mingw64_static-Debug/CMakeFiles/edit_cache.dir
+C:/LABI/SW_1/SW_1/build/6_10_1_mingw64_static-Debug/CMakeFiles/rebuild_cache.dir
+C:/LABI/SW_1/SW_1/build/6_10_1_mingw64_static-Debug/CMakeFiles/list_install_components.dir
+C:/LABI/SW_1/SW_1/build/6_10_1_mingw64_static-Debug/CMakeFiles/install.dir
+C:/LABI/SW_1/SW_1/build/6_10_1_mingw64_static-Debug/CMakeFiles/install/local.dir
+C:/LABI/SW_1/SW_1/build/6_10_1_mingw64_static-Debug/CMakeFiles/install/strip.dir
