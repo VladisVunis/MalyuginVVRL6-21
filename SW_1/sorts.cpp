@@ -21,7 +21,7 @@ int getMin(int *arr,int size ){
     return indm;
 }
 
-void selectionSort(int* arr, int size, bool ascending){
+void selectionSort(int* arr,unsigned int size, bool ascending){
     if(ascending){
         for(int i = 0; i < size ; i++){
             int c = getMax(arr, size-i);
@@ -34,4 +34,35 @@ void selectionSort(int* arr, int size, bool ascending){
             std::swap(arr[c], arr[size-1-i]);
         }
     }
+}
+
+int isSorted(const int* arr,unsigned int size){
+    int a = 0;
+    int i = 1;
+    if(arr[i-1] >= arr[i]){
+        a = -1;
+        for(int i = 1; i < size; i++ ){
+            if(arr[i-1] >= arr[i]){
+                a = -1;
+            }
+            else{
+                a = 0;
+                break;
+            }
+        }
+
+    }
+    else if(arr[i-1] <= arr[i]){
+        a = 1;
+        for(int i = 1; i < size; i++ ){
+            if(arr[i-1] <= arr[i]){
+                a = 1;
+            }
+            else{
+                a = 0;
+                break;
+            }
+        }
+    }
+    return a;
 }

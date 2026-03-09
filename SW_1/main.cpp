@@ -3,12 +3,15 @@
 
 int main()
 {
+    //int arr[] = {0, 0, 0, 0 ,0, 0};
     int arr[] = {110, 6, -10, 4 ,-22, 77};
-    selectionSort(arr, 6, true);
+    //selectionSort(arr, 6, true);
     for(int i = 0;i < 6; i++){
         std::cout<<arr[i]<<" ";
     }
     std::cout<<"\n";
+    int v = isSorted(arr, 6);
+    std::cout<<v<<"\n";
 
     return 0;
 }
