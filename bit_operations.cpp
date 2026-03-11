@@ -36,3 +36,14 @@ int getMaxBit(const int* array, int N){
     if(MAXcount != 0) return MAXindex;
     else return -1;
 }
+
+unsigned char getCount1Bit( int number){
+    int count = 0;
+    unsigned int x = number;
+    while (x > 0) {
+        if (x & 1) count++;
+        x >>= 1;
+    }
+
+    return count;
+}

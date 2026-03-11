@@ -16,10 +16,18 @@ int main()
     cout << hex << Pnumber/2 << endl;
 
     cout<<"------------"<<endl;
-    int ar[5] = {(int) 0xFFFFFFFF, 0x00};
+
+    int ar[5] = { 0x0FFFFFFF, (int) 0xFFFFFFFF, 0x00, 0x0FFFFFFF};
     int index = 0;
-    index = getMaxBit(ar,5);
+    index = getMaxBit(ar,4);
     cout << index<< endl;
+
+    cout<<"------------"<<endl;
+
+    int num = -10;
+    unsigned char amount = getCount1Bit(num);
+    cout << (int)amount << endl;
+
 
 
 
