@@ -5,34 +5,11 @@
 
 using namespace std;
 
-void fillFile(const char* fileName, int min, int max, char delimeter, int cols, int countElements){
-    srand(time(nullptr));
-    ofstream DIM;
-    DIM.open("set", ios_base::out);
-    if (!DIM.is_open()){
-        std::cout << "error" << std::endl;
-    }
-    else{
-        for(int Ncount = 0; Ncount != countElements ;Ncount += cols ){
-            for(int NScount = 0; NScount != cols; NScount++){
-                if(cols == NScount + 1){
-                    int x = min + rand()%(max-min +1);
-                    DIM << x << std::endl;
-                }
-                else{
-                    int x = min + rand()%(max-min +1);
-                    DIM << x << delimeter;
-                }
-            }
-
-        }
-        DIM.close();
-    }
-}
-
 int main()
 {
-    fillFile("set", 10, 20, '\t', 4, 12);
+    srand(time(nullptr));
+    fillFile("set", 10, 20, '\t', 7, 12);
+
     /*int number = 0x80000001;
 
     setBit(&number, 8);
