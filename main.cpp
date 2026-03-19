@@ -3,29 +3,46 @@
 
 using namespace std;
 
-void cycleShiftArray(unsigned int *array, int size, int N, bool left){
-    for(int i = 0; i < size; i++){
-        //x = *(array + i);
-        if( left == true){
-            *(array + i) = (*(array + i) << N) | (*(array + i) >> (32 - N));
-        }
-        else{
-            *(array + i) = (*(array + i) >> N) | (*(array + i) << (32 - N));
-        }
-    }
+void setBit(unsigned int* number, int numBit){
+    unsigned int c = 0x00000001;
+    c = c << numBit;
+    *number = *number | c;
+}
+
+void clearBit(unsigned int* number, int numBit){
+    unsigned int c = 0x00000001;
+    c = c << numBit;
+    c = ~c;
+    *number = *number & c;
 }
 
 int main()
 {
-    unsigned int ar[4] = {0x80000001, 0x00, 0x80, 0x10};
+    unsigned int number = 0x0f;
+
+    setBit(&number, 8);
+    cout << hex << number << endl;
+
+    cout<<"------------"<<endl;
+
+    clearBit(&number, 1);
+    cout << hex << number << endl;
+
+    /*unsigned int ar[4] = {0x80000001u, 0x00, 0x80, 0x10};
     int size = 4;
     bool f = true;
+    for(int i = 0; i < 4; i++){
+        std::cout << "x"<< i+1<< " = " << std::hex << ar[i] << std::endl;
+    }
+
+    cout<<"------------"<<endl;
+
     cycleShiftArray(ar, 4, 1, f);
     for(int i = 0; i < 4; i++){
         std::cout << "x"<< i+1<< " = " << std::hex << ar[i] << std::endl;
     }
 
-    /*unsigned int w = 0xFFAABBCC;
+    unsigned int w = 0xFFAABBCC;
     swapHalfWord(&w);
     cout << hex << w << endl;
 

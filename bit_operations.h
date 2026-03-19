@@ -6,4 +6,5 @@ void cycleShift(unsigned int* number, int N, int left);
 int getMaxBit(const int* array, int N);
 unsigned char getCount1Bit(int number);
 void showArray(int *arr, int size);
+void cycleShiftArray(unsigned int *array, int size, int N, bool left);
 #endif // BIT_OPERATIONS_H

@@ -53,3 +53,15 @@ void showArray(unsigned int *arr, int size){
         std::cout << "x"<< i+1<< " = " << std::hex << arr[i] << std::endl;
     }
 }
+
+void cycleShiftArray(unsigned int *array, int size, int N, bool left){
+    for(int i = 0; i < size; i++){
+        //x = *(array + i);
+        if( left == true){
+            *(array + i) = (*(array + i) << N) | (*(array + i) >> (32 - N));
+        }
+        else{
+            *(array + i) = (*(array + i) >> N) | (*(array + i) << (32 - N));
+        }
+    }
+}
