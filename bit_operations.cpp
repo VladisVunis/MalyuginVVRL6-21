@@ -65,3 +65,16 @@ void cycleShiftArray(unsigned int *array, int size, int N, bool left){
         }
     }
 }
+
+void setBit(int* number, int numBit){
+    unsigned int c = 0x00000001;
+    c = c << numBit;
+    *number = *number | c;
+}
+
+void clearBit(int* number, int numBit){
+    unsigned int c = 0x00000001;
+    c = c << numBit;
+    c = ~c;
+    *number = *number & c;
+}

@@ -3,29 +3,16 @@
 
 using namespace std;
 
-void setBit(unsigned int* number, int numBit){
-    unsigned int c = 0x00000001;
-    c = c << numBit;
-    *number = *number | c;
-}
-
-void clearBit(unsigned int* number, int numBit){
-    unsigned int c = 0x00000001;
-    c = c << numBit;
-    c = ~c;
-    *number = *number & c;
-}
-
 int main()
 {
-    unsigned int number = 0x0f;
+    int number = 0x80000001;
 
     setBit(&number, 8);
     cout << hex << number << endl;
 
     cout<<"------------"<<endl;
 
-    clearBit(&number, 1);
+    clearBit(&number, 0);
     cout << hex << number << endl;
 
     /*unsigned int ar[4] = {0x80000001u, 0x00, 0x80, 0x10};
