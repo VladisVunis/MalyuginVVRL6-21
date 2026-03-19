@@ -47,3 +47,9 @@ unsigned char getCount1Bit( int number){
 
     return count;
 }
+
+void showArray(unsigned int *arr, int size){
+    for(int i = 0; i < 4; i++){
+        std::cout << "x"<< i+1<< " = " << std::hex << arr[i] << std::endl;
+    }
+}

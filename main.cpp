@@ -3,9 +3,29 @@
 
 using namespace std;
 
+void cycleShiftArray(unsigned int *array, int size, int N, bool left){
+    for(int i = 0; i < size; i++){
+        //x = *(array + i);
+        if( left == true){
+            *(array + i) = (*(array + i) << N) | (*(array + i) >> (32 - N));
+        }
+        else{
+            *(array + i) = (*(array + i) >> N) | (*(array + i) << (32 - N));
+        }
+    }
+}
+
 int main()
 {
-    unsigned int w = 0xFFAABBCC;
+    unsigned int ar[4] = {0x80000001, 0x00, 0x80, 0x10};
+    int size = 4;
+    bool f = true;
+    cycleShiftArray(ar, 4, 1, f);
+    for(int i = 0; i < 4; i++){
+        std::cout << "x"<< i+1<< " = " << std::hex << ar[i] << std::endl;
+    }
+
+    /*unsigned int w = 0xFFAABBCC;
     swapHalfWord(&w);
     cout << hex << w << endl;
 
@@ -26,7 +46,7 @@ int main()
 
     int num = -10;
     unsigned char amount = getCount1Bit(num);
-    cout << (int)amount << endl;
+    cout << (int)amount << endl;*/
 
 
 
