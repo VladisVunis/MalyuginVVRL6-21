@@ -1,11 +1,39 @@
 #include <iostream>
 #include "bit_operations.h"
+#include <fstream>
+#include <time.h>
 
 using namespace std;
 
+void fillFile(const char* fileName, int min, int max, char delimeter, int cols, int countElements){
+    srand(time(nullptr));
+    ofstream DIM;
+    DIM.open("set", ios_base::out);
+    if (!DIM.is_open()){
+        std::cout << "error" << std::endl;
+    }
+    else{
+        for(int Ncount = 0; Ncount != countElements ;Ncount += cols ){
+            for(int NScount = 0; NScount != cols; NScount++){
+                if(cols == NScount + 1){
+                    int x = min + rand()%(max-min +1);
+                    DIM << x << std::endl;
+                }
+                else{
+                    int x = min + rand()%(max-min +1);
+                    DIM << x << delimeter;
+                }
+            }
+
+        }
+        DIM.close();
+    }
+}
+
 int main()
 {
-    int number = 0x80000001;
+    fillFile("set", 10, 20, '\t', 4, 12);
+    /*int number = 0x80000001;
 
     setBit(&number, 8);
     cout << hex << number << endl;
@@ -15,7 +43,7 @@ int main()
     clearBit(&number, 0);
     cout << hex << number << endl;
 
-    /*unsigned int ar[4] = {0x80000001u, 0x00, 0x80, 0x10};
+    unsigned int ar[4] = {0x80000001u, 0x00, 0x80, 0x10};
     int size = 4;
     bool f = true;
     for(int i = 0; i < 4; i++){
