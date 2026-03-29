@@ -1,6 +1,4 @@
 #include <iostream>
-#include <fstream>
-#include <time.h>
 
 void swapHalfWord(unsigned int* words){
     *words = (*words << 16) | (*words >> 16);
@@ -56,7 +54,7 @@ void showArray(unsigned int *arr, int size){
     }
 }
 
-void cycleShiftArray(unsigned int *array, int size, int N, bool left){
+/*void cycleShiftArray(unsigned int *array, int size, int N, bool left){
     for(int i = 0; i < size; i++){
         //x = *(array + i);
         if( left == true){
@@ -64,6 +62,97 @@ void cycleShiftArray(unsigned int *array, int size, int N, bool left){
         }
         else{
             *(array + i) = (*(array + i) >> N) | (*(array + i) << (32 - N));
+        }
+    }
+}*/
+
+void cycleShiftArray(unsigned int *array, int size, int N, bool left){
+    if(N < 32){
+        unsigned int temp[size];
+        if(left == true){
+            for(int i = size - 1; i >= 0; i --){
+                temp[i] = (*(array+ i) >> (32 - N));
+                *(array + i) = *(array + i) << N;
+            }
+            for(int i = size - 1; i >= 0; i --){
+                if(i == 0){
+                    *(array + (size - 1)) = *(array + (size - 1)) | temp[i];
+                }
+                else{
+                    *(array + (i - 1)) = *(array + (i -1)) | temp[i];
+                }
+            }
+        }
+        else{
+            for(int i = 0; i < size; i ++){
+                temp[i] = (*(array + i) << (32 - N));
+                *(array + i) = *(array + i) >> N;
+            }
+            for(int i = 0; i < size ; i ++){
+                if(i + 1 == size){
+                    *(array) = *(array ) | temp[i];
+                }
+                else{
+                    *(array + (i+1)) = *(array + (i+1)) | temp[i];
+                }
+            }
+        }
+    }
+    else{
+        int a = N / 32;
+        int count = 0;
+
+        while(count < a){
+            if(left == true){
+                unsigned int first = *array;
+
+                for(int i = 0; i < size - 1; i++){
+                    *(array + i) = *(array + i + 1);
+                }
+
+                *(array + (size - 1)) = first;
+            }
+            else{
+                unsigned int last = *(array + (size - 1));
+
+                for(int i = size - 1; i > 0; i--){
+                    *(array + i) = *(array + i - 1);
+                }
+
+                *array = last;
+            }
+
+            count += 1;
+        }
+        a = N % 32;
+        unsigned int temp[size];
+        if(left == true){
+            for(int i = size - 1; i >= 0; i --){
+                temp[i] = (array[i] >> (32 - a));
+                *(array + i) = *(array + i) << a;
+            }
+            for(int i = size - 1; i >= 0; i --){
+                if(i == 0){
+                    *(array + (size - 1)) = *(array + (size - 1)) | temp[i];
+                }
+                else{
+                    *(array + (i - 1)) = *(array + (i -1)) | temp[i];
+                }
+            }
+        }
+        else{
+            for(int i = 0; i < size; i ++){
+                temp[i] = (*(array + i) << (32 - a));
+                *(array + i) = *(array + i) >> a;
+            }
+            for(int i = 0; i < size ; i ++){
+                if(i + 1 == size){
+                    *(array) = *(array) | temp[i];
+                }
+                else{
+                    *(array + (i +1)) = *(array + (i+ 1)) | temp[i];
+                }
+            }
         }
     }
 }
@@ -79,51 +168,4 @@ void clearBit(int* number, int numBit){
     c = c << numBit;
     c = ~c;
     *number = *number & c;
-}
-
-void fillFile(const char* fileName, int min, int max, char delimeter, int cols, int countElements){
-    std::ofstream DIM;
-    DIM.open(fileName, std::ios_base::out);
-    if (!DIM.is_open()){
-        std::cout << "error" << std::endl;
-    }
-    else{
-        if(countElements % cols == 0){
-            for(int Ncount = 0; Ncount != countElements ;Ncount += cols ){
-                for(int NScount = 0; NScount != cols; NScount++){
-                    if(cols == NScount + 1){
-                        int x = min + rand()%(max-min +1);
-                        DIM << x << std::endl;
-                    }
-                    else{
-                        int x = min + rand()%(max-min +1);
-                        DIM << x << delimeter;
-                    }
-                }
-
-            }
-        }
-        else{
-            int count = 0;
-            for(int Ncount = 0; Ncount < (countElements/cols)*cols; Ncount += cols){
-                count += cols;
-                for(int NScount = 0; NScount < cols; NScount++){
-                    if(cols == NScount + 1){
-                        int x = min + rand()%(max-min +1);
-                        DIM << x << std::endl;
-                    }
-                    else{
-                        int x = min + rand()%(max-min +1);
-                        DIM << x << delimeter;
-                    }
-                }
-
-            }
-            for(int c = count ; c < countElements; c++){
-                int x = min + rand()%(max-min +1);
-                DIM << x << delimeter;
-            }
-        }
-        DIM.close();
-    }
 }

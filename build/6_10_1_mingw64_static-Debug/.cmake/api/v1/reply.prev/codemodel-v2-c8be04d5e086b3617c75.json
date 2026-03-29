@@ -8,7 +8,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-24f7ad4f01613464469d.json",
+					"jsonFile" : "directory-.-Debug-c26487fbcc8a09b6189f.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -41,7 +41,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "SW2::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-SW2-Debug-e931032b5daa5da1f4e3.json",
+					"jsonFile" : "target-SW2-Debug-298557311446338fe479.json",
 					"name" : "SW2",
 					"projectIndex" : 0
 				}

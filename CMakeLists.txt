@@ -7,7 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(SW2 main.cpp
     bit_operations.h
-    bit_operations.cpp)
+    bit_operations.cpp
+    file_operations.h
+    file_operations.cpp
+)
 
 include(GNUInstallDirs)
 install(TARGETS SW2

@@ -2,13 +2,33 @@
 #include "bit_operations.h"
 #include <fstream>
 #include <time.h>
+#include "file_operations.h"
 
 using namespace std;
 
+/*void cycleShiftArray(unsigned int *array, int size, int N, bool left){
+    for(int i = 0; i < size; i++){
+        //x = *(array + i);
+        if( left == true){
+            *(array + i) = (*(array + i) << N) | (*(array + i) >> (32 - N));
+        }
+        else{
+            *(array + i) = (*(array + i) >> N) | (*(array + i) << (32 - N));
+        }
+    }
+
+            for(int i = size - 1; i > -1; i --){
+                unsigned int saved = 0;
+                saved = (array[i] >> (N - 32));
+                *(array + i) = *(array + i) << N;
+            }
+        }
+}*/
+
 int main()
 {
-    srand(time(nullptr));
-    fillFile("set", 10, 20, '\t', 7, 12);
+    /*srand(time(nullptr));
+    fillFile("set", 10, 20, '\t', 7, 12);*/
 
     /*int number = 0x80000001;
 
@@ -27,14 +47,17 @@ int main()
         std::cout << "x"<< i+1<< " = " << std::hex << ar[i] << std::endl;
     }
 
-    cout<<"------------"<<endl;
+    cout<<"------------"<<endl;*/
+
+    unsigned int ar[] = {0x40, 0x00, 0x80, 0x01};
+    bool f = true;
 
     cycleShiftArray(ar, 4, 1, f);
     for(int i = 0; i < 4; i++){
         std::cout << "x"<< i+1<< " = " << std::hex << ar[i] << std::endl;
     }
 
-    unsigned int w = 0xFFAABBCC;
+    /*unsigned int w = 0xFFAABBCC;
     swapHalfWord(&w);
     cout << hex << w << endl;
 

@@ -9,5 +9,4 @@ void showArray(int *arr, int size);
 void cycleShiftArray(unsigned int *array, int size, int N, bool left);
 void setBit(int* number, int numBit);
 void clearBit(int* number, int numBit);
-void fillFile(const char* fileName, int min, int max, char delimeter, int cols, int countElements);
 #endif // BIT_OPERATIONS_H
