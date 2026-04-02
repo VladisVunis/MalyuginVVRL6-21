@@ -10,6 +10,14 @@ add_executable(SW2 main.cpp
     bit_operations.cpp
     file_operations.h
     file_operations.cpp
+    box.h
+    box.cpp
+    sorts.h
+    sorts.cpp
+    fraction.h
+    fraction.cpp
+
+
 )
 
 include(GNUInstallDirs)

@@ -2,31 +2,44 @@
 #include "bit_operations.h"
 #include <fstream>
 #include <time.h>
+#include "sorts.h"
 #include "file_operations.h"
+#include "box.h"
+#include "fraction.h"
 
 using namespace std;
 
-/*void cycleShiftArray(unsigned int *array, int size, int N, bool left){
-    for(int i = 0; i < size; i++){
-        //x = *(array + i);
-        if( left == true){
-            *(array + i) = (*(array + i) << N) | (*(array + i) >> (32 - N));
-        }
-        else{
-            *(array + i) = (*(array + i) >> N) | (*(array + i) << (32 - N));
-        }
-    }
-
-            for(int i = size - 1; i > -1; i --){
-                unsigned int saved = 0;
-                saved = (array[i] >> (N - 32));
-                *(array + i) = *(array + i) << N;
-            }
-        }
-}*/
 
 int main()
 {
+
+    Fraction test(10, 15);
+    int res = fracReduction(test);
+    if (res == -1) {
+        std::cerr << "errror..." << std::endl;
+    }
+    std::cout << test._numerator << "/" << test._denominator << std::endl;
+
+
+    /*Box box;
+    Box* temp = new Box();
+
+    temp->_len = 1;
+    temp->_width = 2;
+    temp->_height = 3;
+    temp->_color = 0x00FF00FF;
+    writeToFile("STR",*temp );
+    delete temp;
+    temp = nullptr;
+    Box* temp1 = new Box();
+    readFromFile("STR", *temp1);
+    cout << temp1->_len <<endl;
+    cout << temp1->_width <<endl;
+    cout << temp1->_height <<endl;
+    cout << std::hex << temp1->_color <<endl;
+    delete temp1;
+    temp1 = nullptr;
+
     /*srand(time(nullptr));
     fillFile("set", 10, 20, '\t', 7, 12);*/
 
@@ -47,7 +60,7 @@ int main()
         std::cout << "x"<< i+1<< " = " << std::hex << ar[i] << std::endl;
     }
 
-    cout<<"------------"<<endl;*/
+    cout<<"------------"<<endl;
 
     unsigned int ar[] = {0x40, 0x00, 0x80, 0x01};
     bool f = true;
@@ -57,7 +70,7 @@ int main()
         std::cout << "x"<< i+1<< " = " << std::hex << ar[i] << std::endl;
     }
 
-    /*unsigned int w = 0xFFAABBCC;
+    unsigned int w = 0xFFAABBCC;
     swapHalfWord(&w);
     cout << hex << w << endl;
 
@@ -78,7 +91,23 @@ int main()
 
     int num = -10;
     unsigned char amount = getCount1Bit(num);
-    cout << (int)amount << endl;*/
+    cout << (int)amount << endl;
+
+    -----------
+
+    //int arr[] = {0, 0, 0, 0 ,0, 0};
+    int arr[] = {110, 6, -10, 4 ,-22, 77};
+    //selectionSort(arr, 6, true);
+    for(int i = 0;i < 6; i++){
+        std::cout<<arr[i]<<" ";
+    }
+    std::cout<<"\n";
+    int v = isSorted(arr, 6);
+    std::cout<<v<<"\n";
+
+
+
+*/
 
 
 
