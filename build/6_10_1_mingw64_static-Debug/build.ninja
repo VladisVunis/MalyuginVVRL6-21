@@ -73,6 +73,22 @@ build CMakeFiles/SW2.dir/file_operations.cpp.obj: CXX_COMPILER__SW2_unscanned_De
   OBJECT_FILE_DIR = CMakeFiles\SW2.dir
   TARGET_SUPPORT_DIR = CMakeFiles\SW2.dir
 
+build CMakeFiles/SW2.dir/box.cpp.obj: CXX_COMPILER__SW2_unscanned_Debug C$:/LABI/SW2/box.cpp || cmake_object_order_depends_target_SW2
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\SW2.dir\box.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\SW2.dir
+  OBJECT_FILE_DIR = CMakeFiles\SW2.dir
+  TARGET_SUPPORT_DIR = CMakeFiles\SW2.dir
+
+build CMakeFiles/SW2.dir/sorts.cpp.obj: CXX_COMPILER__SW2_unscanned_Debug C$:/LABI/SW2/sorts.cpp || cmake_object_order_depends_target_SW2
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\SW2.dir\sorts.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\SW2.dir
+  OBJECT_FILE_DIR = CMakeFiles\SW2.dir
+  TARGET_SUPPORT_DIR = CMakeFiles\SW2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target SW2
@@ -81,7 +97,7 @@ build CMakeFiles/SW2.dir/file_operations.cpp.obj: CXX_COMPILER__SW2_unscanned_De
 #############################################
 # Link the executable SW2.exe
 
-build SW2.exe: CXX_EXECUTABLE_LINKER__SW2_Debug CMakeFiles/SW2.dir/main.cpp.obj CMakeFiles/SW2.dir/bit_operations.cpp.obj CMakeFiles/SW2.dir/file_operations.cpp.obj
+build SW2.exe: CXX_EXECUTABLE_LINKER__SW2_Debug CMakeFiles/SW2.dir/main.cpp.obj CMakeFiles/SW2.dir/bit_operations.cpp.obj CMakeFiles/SW2.dir/file_operations.cpp.obj CMakeFiles/SW2.dir/box.cpp.obj CMakeFiles/SW2.dir/sorts.cpp.obj
   CONFIG = Debug
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
