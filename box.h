@@ -1,5 +1,7 @@
 #ifndef BOX_H
 #define BOX_H
+#include <iostream>
+#include <fstream>
 
 struct Box {
     int _len; //длина

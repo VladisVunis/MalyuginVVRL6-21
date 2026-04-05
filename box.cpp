@@ -1,6 +1,6 @@
-#include <fstream>
-#include <iostream>
 #include "box.h"
+#include <iostream>
+#include <fstream>
 
 void writeToFile(const char* fileName, const struct Box& box){
     std::ofstream Write;
@@ -31,3 +31,5 @@ void readFromFile(const char* fileName, struct Box& box){
     }
     Read.close();
 }
+
+

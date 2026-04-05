@@ -16,6 +16,8 @@ add_executable(SW2 main.cpp
     sorts.cpp
     fraction.h
     fraction.cpp
+    rk_1.h
+    rk_1.cpp
 
 
 )

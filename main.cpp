@@ -4,16 +4,27 @@
 #include <time.h>
 #include "sorts.h"
 #include "file_operations.h"
-#include "box.h"
+//#include "box.h"
 #include "fraction.h"
+#include "rk_1.h"
 
 using namespace std;
-
 
 int main()
 {
 
-    Fraction test(10, 15);
+
+
+    const struct Box temp(15);
+    std::cout << temp;
+
+    const struct Box temp1;
+    std::cout << temp1;
+
+    const struct Box temp2(5,10,11);
+    std::cout << temp2;
+
+    /*Fraction test(10, 15);
     int res = fracReduction(test);
     if (res == -1) {
         std::cerr << "errror..." << std::endl;
