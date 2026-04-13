@@ -1,11 +1,12 @@
 #include <iostream>
 
-#define NAME 3// RK = 1/HW = 2/ SW = 3
-#define COUNT 3 // номер работы
+#define NAME 1// RK = 1/HW = 2/ SW = 3
+#define COUNT 1 // номер работы
 #define NUMBER 1 // номер задания
 
 #if NAME == 1 && COUNT == 1
-#include "rk_1.h"
+#include "box.h"
+#include "fraction.h"
 #elif  NAME == 3 && COUNT == 4
 #include "fraction.h"
 #include "box.h"
@@ -23,7 +24,7 @@ using namespace std;
 
 int main()
 {
-#if NAME == 1 && COUNT == 1 && NUMBER == 1
+#if NAME == 1 && COUNT == 1 && NUMBER == 2
     Fraction fr1(10, 20);
     Fraction fr2(-5, 7);
     std::cout << sum(fr1, fr2) << std::endl;
@@ -32,7 +33,7 @@ int main()
     std::cout << mul(fr1, fr2) << std::endl;
 #endif
 
-#if NAME == 1 && COUNT == 1 && NUMBER == 2
+#if NAME == 1 && COUNT == 1 && NUMBER == 1
     const struct Box temp(15);
     std::cout << temp;
 
@@ -131,7 +132,7 @@ int main()
     cout << (int)amount << endl;
 #endif
 
-#if NAME == 3 && COUNT == 1 && NUMBER == 1 || NUMBER == 2
+#if NAME == 3 && COUNT == 1 && (NUMBER == 1 || NUMBER == 2)
     int arr[] = {110, 6, -10, 4 ,-22, 77};
     selectionSort(arr, 6, true);
     for(int i = 0;i < 6; i++){

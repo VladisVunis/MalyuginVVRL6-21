@@ -34,7 +34,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 25,
+				"line" : 24,
 				"parent" : 0
 			}
 		]
@@ -69,7 +69,8 @@
 				4,
 				6,
 				8,
-				10
+				10,
+				12
 			]
 		}
 	],
@@ -121,7 +122,8 @@
 				4,
 				6,
 				8,
-				10
+				10,
+				12
 			]
 		},
 		{
@@ -204,6 +206,12 @@
 			"backtrace" : 1,
 			"path" : "rk_1.h",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "rk_1.cpp",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"
