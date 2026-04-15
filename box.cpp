@@ -40,7 +40,7 @@ std::ostream& operator<<(std::ostream& out, const Box& ST){
     out << ", height = ";
     out << ST._height;
     out << ", volume = ";
-    out << ST._volume;
+    out << ST.volume;
     out << "\n";
 
     return out;
