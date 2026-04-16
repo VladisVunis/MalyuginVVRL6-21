@@ -1,12 +1,15 @@
 #include <iostream>
+#include <bitset>
 
-#define NAME 1// RK = 1/HW = 2/ SW = 3
-#define COUNT 1 // номер работы
-#define NUMBER 1 // номер задания
+#define NAME 3// RK = 1/HW = 2/ SW = 3
+#define COUNT 5 // номер работы
+#define NUMBER 2 // номер задания
 
 #if NAME == 1 && COUNT == 1
 #include "box.h"
 #include "fraction.h"
+#elif NAME == 3 && COUNT == 5
+#include "bit_operations.h"
 #elif  NAME == 3 && COUNT == 4
 #include "fraction.h"
 #include "box.h"
@@ -24,6 +27,13 @@ using namespace std;
 
 int main()
 {
+
+#if NAME == 3 && COUNT == 5 && NUMBER == 2
+    int a = 0x101;
+    bool res0 = isPalindromNumber(a);
+    cout << res0 << endl;
+#endif
+
 #if NAME == 1 && COUNT == 1 && NUMBER == 2
     Fraction fr1(10, 20);
     Fraction fr2(-5, 7);

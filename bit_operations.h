@@ -9,4 +9,5 @@ void showArray(int *arr, int size);
 void cycleShiftArray(unsigned int *array, int size, int N, bool left);
 void setBit(int* number, int numBit);
 void clearBit(int* number, int numBit);
+bool isPalindromNumber(const int number);
 #endif // BIT_OPERATIONS_H

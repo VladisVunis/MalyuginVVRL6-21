@@ -157,3 +157,66 @@ void clearBit(int* number, int numBit){
     c = ~c;
     *number = *number & c;
 }
+
+bool isPalindromNumber(const int number){
+    int unsigned a = number;
+    unsigned int buffer = 0;
+    int unsigned doubleB = 0;
+    unsigned int ITOGL = 0;
+    unsigned int ITOGR = 0;
+    unsigned int ITOG = 0;
+    unsigned int conecR = 0;
+    unsigned int conecL = 0;
+    unsigned int promej = 0;
+    unsigned int mask = 1;
+
+    buffer = a >> 16;    //SWAP left half of number
+    doubleB = buffer;
+    for(int i = 1; i <= 8; i++){
+        if((doubleB&0x1) == 1) {
+            promej = mask << (16 - i);
+            conecL = conecL | promej;
+        }
+        doubleB = doubleB >> 1;
+    }
+    doubleB = buffer >> 8;
+    mask = 0b10000000;
+    promej = 0;
+    for(int i = 8; i > 0; i--){
+        if((doubleB&0x1) == 1) {
+            promej = mask >> (8-i);
+            conecR = conecR | promej;
+        }
+        doubleB = doubleB >> 1;
+    }
+    ITOGL = conecL | conecR;
+
+    doubleB = a;    //SWAP right half of number
+    mask = 1;
+    conecL = 0;
+    for(int i = 1; i <= 8;i++ ){
+        if((doubleB &0x1) == 1){
+            promej = mask << (16 - i);
+            conecL = conecL | promej;
+        }
+        doubleB = doubleB >> 1;
+    }
+    buffer = a&0xFFFF;
+    doubleB = buffer >> 8;
+    mask = 0b10000000;
+    conecR = 0;
+    for(int i = 1; i <= 8;i++ ){
+        if((doubleB &0x1) == 1){
+            promej = mask >> (8 - i);
+            conecR = conecR | promej;
+        }
+        doubleB = doubleB >> 1;
+    }
+
+    ITOGR = conecR | conecL;
+    ITOGR = ITOGR << 16;
+    ITOG = ITOGR | ITOGL;
+
+    if(ITOG == a) return true;
+    else return false;
+}
