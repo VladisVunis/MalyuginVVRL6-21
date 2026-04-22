@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 
+int Box::counter = 1;
+
 void writeToFile(const char* fileName, const struct Box& box){
     std::ofstream Write;
     Write.open(fileName, std::ios_base::out);
@@ -32,17 +34,10 @@ void readFromFile(const char* fileName, struct Box& box){
     Read.close();
 }
 
-std::ostream& operator<<(std::ostream& out, const Box& ST){
-    out << "len = ";
-    out << ST._len;
-    out << ", width = ";
-    out << ST._width;
-    out << ", height = ";
-    out << ST._height;
-    out << ", volume = ";
-    out << ST.volume;
-    out << "\n";
-
-    return out;
+std::ostream& operator<<(std::ostream& dot, const Box& vivo){
+    dot << "[" <<vivo.nameBox <<"] = {"<< vivo._len << ", " << vivo._width <<", "<<vivo._height << "} = ";
+    if(vivo.volus == true) dot << vivo.volume << "\n";
+    else dot << "[" <<vivo.nameBox <<"] = V < 0\n";
+    return dot;
 }
 

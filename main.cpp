@@ -1,5 +1,4 @@
 #include <iostream>
-#include <bitset>
 
 #define NAME 3// RK = 1/HW = 2/ SW = 3
 #define COUNT 5 // номер работы
@@ -10,6 +9,7 @@
 #include "fraction.h"
 #elif NAME == 3 && COUNT == 5
 #include "bit_operations.h"
+#include "box.h"
 #elif  NAME == 3 && COUNT == 4
 #include "fraction.h"
 #include "box.h"
@@ -22,11 +22,31 @@
 #include "sorts.h"
 #endif
 
-
 using namespace std;
 
 int main()
 {
+
+#if NAME == 3 && COUNT == 5 && NUMBER == 1
+        Box* temp[10];
+        temp[0] = new Box(10, 12, 13);
+        std::cout << *temp[0]; // [1] = {10, 12, 13} = 1560
+        temp[1] = new Box(1, 2, 3);
+        std::cout << *temp[1]; // [2] = {1, 2, 3} = 6
+        delete temp[1];
+        temp[2] = new Box(1, 2, 3);
+        std::cout << *temp[2]; // [2] = {1, 2, 3} = 6
+        delete temp[0];
+        temp[3] = new Box(1, 2, 3);
+        std::cout << *temp[3]; // [3] = {1, 2, 3} = 6
+        temp[0] = new Box(2, 3, 4);
+        std::cout << *temp[0]; // [4] = {2, 3, 4} = 24
+        Box temp_1(1,2,2);
+        std::cout << temp_1; // [5] = {1, 2, 2} = 4
+        delete temp[0];
+        delete temp[3];
+        delete temp[2];
+#endif
 
 #if NAME == 3 && COUNT == 5 && NUMBER == 2
     int a = 0x101;
