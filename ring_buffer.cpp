@@ -79,3 +79,7 @@ int RingBuffer::push_front(int element) {
 
     return ErrorFilo::ok;
 }
+
+void RingBuffer::flush() {
+    dataLen = 0;
+}

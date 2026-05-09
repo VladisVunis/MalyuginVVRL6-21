@@ -18,6 +18,8 @@ add_executable(SW2 main.cpp
     fraction.cpp
     ring_buffer.cpp
     ring_buffer.h
+    filo.cpp
+    filo.h
 
 
 
