@@ -1,6 +1,16 @@
 #include "fraction.h"
 #include <iostream>
 
+Fraction::Fraction(){
+    _numerator = 1;
+    _denominator = 1;
+};
+
+Fraction::Fraction(int numerator, int denominator){
+    _numerator = numerator;
+    _denominator = denominator;
+}
+
 int fracReduction(Fraction& frac){
     int a = frac._numerator;
     int b = frac._denominator;

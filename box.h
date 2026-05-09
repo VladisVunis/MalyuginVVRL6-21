@@ -14,47 +14,11 @@ struct Box {
     int volume; // объем
     bool volus;
 
-    Box(int len, int width, int height){
-        nameBox = counter;
-        _len = len;
-        _width = width;
-        _height = height;
-        if((_len*_width*_height) < 0){
-            volus = false;
-        }
-        else volus = true;
-        volume = _len*_width*_height;
-        counter++;
-    }
-
-    Box(int number){
-        nameBox = counter;
-        _len = number;
-        _width = number;
-        _height = number;
-        if((_len*_width*_height) < 0){
-            volus = false;
-        }
-        else volus = true;
-        volume = _len*_width*_height;
-        counter++;
-    }
-
-    Box(){
-        nameBox = counter;
-        _len = 10;
-        _width = 10;
-        _height = 10;
-        if((_len*_width*_height) < 0){
-            volus = false;
-        }
-        else volus = true;
-        volume = _len*_width*_height;
-        counter++;
-    }
+    Box(int len, int width, int height);
+    Box(int number);
+    Box();
 
 };
-
 
 void writeToFile(const char* fileName, const struct Box& box);
 void readFromFile(const char* fileName, struct Box& box);

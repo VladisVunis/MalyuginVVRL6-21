@@ -5,14 +5,8 @@
 struct Fraction {
     int _numerator; //< числитель
     int _denominator; //< знаменатель
-    Fraction(){
-        _numerator = 1;
-        _denominator = 1;
-    };
-    Fraction(int numerator, int denominator){
-        _numerator = numerator;
-        _denominator = denominator;
-    }
+    Fraction();
+    Fraction(int numerator, int denominator);
 };
 
 int fracReduction(Fraction& frac);

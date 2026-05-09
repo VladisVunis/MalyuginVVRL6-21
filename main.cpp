@@ -1,7 +1,7 @@
 #include <iostream>
 
-#define NAME 3// RK = 1/HW = 2/ SW = 3
-#define COUNT 5 // номер работы
+#define NAME 1// RK = 1/HW = 2/ SW = 3
+#define COUNT 1 // номер работы
 #define NUMBER 2 // номер задания
 
 #if NAME == 1 && COUNT == 1

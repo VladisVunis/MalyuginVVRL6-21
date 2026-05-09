@@ -16,6 +16,8 @@ add_executable(SW2 main.cpp
     sorts.cpp
     fraction.h
     fraction.cpp
+    ring_buffer.cpp
+    ring_buffer.h
 
 
 

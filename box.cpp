@@ -2,6 +2,45 @@
 #include <iostream>
 #include <fstream>
 
+Box::Box(int len, int width, int height){
+    nameBox = counter;
+    _len = len;
+    _width = width;
+    _height = height;
+    if((_len*_width*_height) < 0){
+        volus = false;
+    }
+    else volus = true;
+    volume = _len*_width*_height;
+    counter++;
+}
+
+Box::Box(int number){
+    nameBox = counter;
+    _len = number;
+    _width = number;
+    _height = number;
+    if((_len*_width*_height) < 0){
+        volus = false;
+    }
+    else volus = true;
+    volume = _len*_width*_height;
+    counter++;
+}
+Box::Box(){
+    nameBox = counter;
+    _len = 10;
+    _width = 10;
+    _height = 10;
+    if((_len*_width*_height) < 0){
+        volus = false;
+    }
+    else volus = true;
+    volume = _len*_width*_height;
+    counter++;
+}
+
+
 int Box::counter = 1;
 
 void writeToFile(const char* fileName, const struct Box& box){
