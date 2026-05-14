@@ -83,3 +83,61 @@ int RingBuffer::push_front(int element) {
 void RingBuffer::flush() {
     dataLen = 0;
 }
+
+int RingBuffer::get_back(int *element){
+    if (dataLen == 0) {
+        return ErrorFilo::empty;
+    }
+
+    pEnd--;
+
+    if (pEnd < 0) {
+        pEnd = size - 1;
+    }
+
+    *element = buffer[pEnd];
+    dataLen--;
+
+    return ErrorFilo::ok;
+}
+
+int RingBuffer::get_front(int *element) {
+    if (dataLen == 0) {
+        return ErrorFilo::empty;
+    }
+    *element = buffer[pBegin];
+    pBegin++;
+    dataLen--;
+    if (pBegin == size) {
+        pBegin = 0;
+    }
+
+    return ErrorFilo::ok;
+}
+
+int RingBuffer::resize(int new_size){
+    int* new_buffer = new int[new_size];
+
+    for (int i = 0; i < dataLen; i++) {
+        int old_index = pBegin + i;
+
+        if (old_index >= size) {
+            old_index -= size;
+        }
+
+        new_buffer[i] = buffer[old_index];
+    }
+
+    delete[] buffer;
+
+    buffer = new_buffer;
+    size = new_size;
+    pBegin = 0;
+    pEnd = dataLen;
+
+    if (pEnd == size) {
+        pEnd = 0;
+    }
+
+    return ErrorFilo::ok;
+}

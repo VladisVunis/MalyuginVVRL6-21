@@ -20,6 +20,14 @@ add_executable(SW2 main.cpp
     ring_buffer.h
     filo.cpp
     filo.h
+    task_filo.h
+    task_filo.cpp
+    test.cpp
+    test.h
+    task_filo.cpp
+    task_filo.h
+    test_ring_buffer.h
+    test_ring_buffer.cpp
 
 
 

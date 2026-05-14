@@ -1,12 +1,6 @@
 #ifndef FILO_H
 #define FILO_H
 
-enum ErrorFilo {
-    ok = 0,
-    empty = 1,
-    full = 2,
-};
-
 class FILO {
 private :
     int* buffer;

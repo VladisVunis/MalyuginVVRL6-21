@@ -34,7 +34,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 28,
+				"line" : 35,
 				"parent" : 0
 			}
 		]
@@ -71,7 +71,9 @@
 				8,
 				10,
 				11,
-				13
+				13,
+				16,
+				17
 			]
 		}
 	],
@@ -125,7 +127,9 @@
 				8,
 				10,
 				11,
-				13
+				13,
+				16,
+				17
 			]
 		},
 		{
@@ -138,7 +142,10 @@
 				7,
 				9,
 				12,
-				14
+				14,
+				15,
+				18,
+				19
 			]
 		}
 	],
@@ -225,6 +232,33 @@
 		{
 			"backtrace" : 1,
 			"path" : "filo.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "task_filo.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "task_filo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "test.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "test.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "test_ring_buffer.h",
 			"sourceGroupIndex" : 1
 		}
 	],

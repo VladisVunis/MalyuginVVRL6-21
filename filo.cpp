@@ -1,4 +1,5 @@
 #include "filo.h"
+#include "ring_buffer.h"
 #include <iostream>
 
 FILO::FILO() {
@@ -44,6 +45,9 @@ void FILO::flush() {
 }
 void FILO::showElements() const {
     std::cout << "{";
-    for (int i = 0; i < dataLen; std::cout << buffer[i++] << ", ");
+    for (int i = 0; i < dataLen; i++){
+        std::cout << buffer[i];
+        if(i < dataLen - 1 ) std::cout << ", ";
+    }
     std::cout << "}" << std::endl;
 }
