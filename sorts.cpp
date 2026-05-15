@@ -1,4 +1,5 @@
 #include <utility>
+#include "HW1.h"
 
 int getMax(int *arr,int size ){
     int indM = 0;
@@ -69,14 +70,6 @@ int isSorted(const int* arr,unsigned int size){
 
 // ------------HW1------------
 
-
-bool ascending(int a, int b){
-    return a > b;
-}
-bool descending(int a, int b){
-    return a < b;
-}
-
 void bubbleSort(int* ar, int size, bool (*comp)(int, int)){
     for(int i = 0; i < size-1; i++){
         for(int j = 0; j < size-1-i; j++){
@@ -87,16 +80,6 @@ void bubbleSort(int* ar, int size, bool (*comp)(int, int)){
             }
         }
     }
-}
-
-int getBest(int* ar, int size, bool (*comp)(int,int)){
-    int IndBest = 0;
-        for(int i = 1; i < size; i ++){
-        if(comp(ar[IndBest], ar[i])){
-                IndBest = i;
-        }
-    }
-        return IndBest;
 }
 
 void selectionSort(int* ar, int size, bool (*comp)(int,int)){
@@ -185,4 +168,103 @@ void mergeSort(int* ar, int size, bool (*comp)(int, int)) { // вызов все
     }
 
     mergeSortRecursive(ar, 0, size - 1, comp);
+}
+
+void quickSort(int* ar, int size, bool (*comp)(int, int)) {
+    if (size <= 1) {
+        return;
+    }
+
+    int pivot = ar[size / 2];
+
+    int i = 0;
+    int j = size - 1;
+
+    while (i <= j) {
+        while (comp(ar[i], pivot)) {
+            i++;
+        }
+
+        while (comp(pivot, ar[j])) {
+            j--;
+        }
+
+        if (i <= j) {
+            std::swap(ar[i], ar[j]);
+            i++;
+            j--;
+        }
+    }
+
+    quickSort(ar, j + 1, comp);
+    quickSort(ar + i, size - i, comp);
+}
+
+void sortShell(int* ar, int size, bool (*comp)(int, int)) {
+    for (int gap = size / 2; gap > 0; gap /= 2) {
+
+        for (int i = gap; i < size; i++) {
+            int temp = ar[i];
+            int j = i;
+
+            while (j >= gap && comp(temp, ar[j - gap])) {
+                ar[j] = ar[j - gap];
+                j -= gap;
+            }
+
+            ar[j] = temp;
+        }
+    }
+}
+
+void countSort(int* ar, int size, bool (*comp)(int, int)) {
+    if (size <= 1) {
+        return;
+    }
+
+    int min = ar[0];
+    int max = ar[0];
+
+    for (int i = 1; i < size; i++) {
+        if (ar[i] < min) {
+            min = ar[i];
+        }
+
+        if (ar[i] > max) {
+            max = ar[i];
+        }
+    }
+
+    int countSize = max - min + 1;
+    int* count = new int[countSize];
+
+    for (int i = 0; i < countSize; i++) {
+        count[i] = 0;
+    }
+
+    for (int i = 0; i < size; i++) {
+        count[ar[i] - min]++;
+    }
+
+    int index = 0;
+
+    if (comp(min, max)) {
+        for (int i = 0; i < countSize; i++) {
+            while (count[i] > 0) {
+                ar[index] = i + min;
+                index++;
+                count[i]--;
+            }
+        }
+    } else {
+        for (int i = countSize - 1; i >= 0; i--) {
+            while (count[i] > 0) {
+                ar[index] = i + min;
+                index++;
+                count[i]--;
+            }
+        }
+    }
+
+    delete[] count;
 }

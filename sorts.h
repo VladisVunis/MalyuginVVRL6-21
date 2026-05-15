@@ -15,4 +15,10 @@ void insertionSort(int* ar, int size, bool (*comp)(int,int));
 void merge(int* ar, int left, int mid, int right, bool (*comp)(int, int)); // сборка неделимых кусков памяти и их одновременная сортировка
 void mergeSortRecursive(int* ar, int left, int right, bool (*comp)(int, int));// разделение памяти до неделимых кусков
 void mergeSort(int* ar, int size, bool (*comp)(int, int)); // функция сортировки слиянием, состоящая из деления до неделимых кусков, и затем ее сборка с учетом величины каждого куска
+
+void quickSort(int* ar, int size, bool (*comp)(int,int));
+
+void sortShell(int* ar, int size, bool (*comp)(int, int));
+
+void countSort(int* ar, int size, bool (*comp)(int,int));
 #endif // SORTS_H

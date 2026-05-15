@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define NAME 3// RK = 1/HW = 2/ SW = 3
+#define NAME 2// RK = 1/HW = 2/ SW = 3
 #define COUNT 6 // номер работы
 #define NUMBER 2 // номер задания
 
@@ -15,6 +15,9 @@
 #if NAME == 1 && COUNT == 1
 #include "box.h"
 #include "fraction.h"
+#elif NAME == 2
+#include "sorts.h"
+#include "HW1.h"
 #elif NAME == 3 && COUNT == 6
 #include "ring_buffer.h"
 #include "filo.h"
@@ -35,10 +38,249 @@
 #include "sorts.h"
 #endif
 
-using namespace std;
+#if NAME == 2
+int main(int argc, char* argv[])
+{
+    int minSize = 50;
+    int maxSize = 200000;
+    int stepSize = 0;
+    int maxTime = 1000;
 
+    for (int i = 1; i < argc; i++) {
+        std::string flag = argv[i];
+
+        if (flag == "--min_size" && i + 1 < argc) {
+            minSize = std::atoi(argv[i + 1]);
+            i++;
+        }
+        else if (flag == "--max_size" && i + 1 < argc) {
+            maxSize = std::atoi(argv[i + 1]);
+            i++;
+        }
+        else if (flag == "--step_size" && i + 1 < argc) {
+            stepSize = std::atoi(argv[i + 1]);
+            i++;
+        }
+        else if (flag == "--max_time" && i + 1 < argc) {
+            maxTime = std::atoi(argv[i + 1]);
+            i++;
+        }
+    }
+
+    writeTOP("result");
+    bool useBubble = true;
+    bool useSelection = true;
+    bool useInsertion = true;
+    bool useMerge = true;
+    bool useQuick = true;
+    bool useShell = true;
+    bool useCount = true;
+
+        for(int j = minSize;j < maxSize; ){
+
+            for(int i = 1; i < 9; i++ ){
+                switch(i){
+                case 1:{
+                    char* sizeStr = convertIntToStr(j);
+                    writeStringToFile("result" , sizeStr);
+                    delete [] sizeStr;
+                    break;
+                }
+                case 2: {
+                    if (useBubble == false) {
+                        writeStringToFile("result", "---");
+                        break;
+                    }
+
+                    int* ar = new int [j];
+                    randomFillAr(ar, j);
+                    double time1 = getTime(meas::milli);
+                    bubbleSort(ar, j, ascending);
+                    double time2 = getTime(meas::milli);
+                    delete [] ar;
+                    double result = time2 - time1;
+
+                    if (result > maxTime) {
+                        useBubble = false;
+                        writeStringToFile("result", "---");
+                    } else {
+                        char* time = convertDoubleToStr(result);
+                        writeStringToFile("result", time);
+                        delete[] time;
+                    }
+
+                    break;
+                }
+                case 3:{
+                    if (useSelection == false) {
+                        writeStringToFile("result", "---");
+                        break;
+                    }
+
+                    int* ar = new int [j];
+                    randomFillAr(ar, j);
+                    double time1 = getTime(meas::milli);
+                    selectionSort(ar, j, ascending);
+                    double time2 = getTime(meas::milli);
+                    delete [] ar;
+                    double result = time2 - time1;
+
+                    if (result > maxTime) {
+                        useSelection = false;
+                        writeStringToFile("result", "---");
+                    } else {
+                        char* time = convertDoubleToStr(result);
+                        writeStringToFile("result", time);
+                        delete[] time;
+                    }
+
+                    break;
+                }
+                case 4:{
+                    if (useInsertion == false) {
+                        writeStringToFile("result", "---");
+                        break;
+                    }
+
+                    int* ar = new int [j];
+                    randomFillAr(ar, j);
+                    double time1 = getTime(meas::milli);
+                    insertionSort(ar, j, ascending);
+                    double time2 = getTime(meas::milli);
+                    delete [] ar;
+                    double result = time2 - time1;
+
+                    if (result > maxTime) {
+                        useInsertion = false;
+                        writeStringToFile("result", "---");
+                    } else {
+                        char* time = convertDoubleToStr(result);
+                        writeStringToFile("result", time);
+                        delete[] time;
+                    }
+
+                    break;
+                }
+                case 5:{
+                    if (useMerge == false) {
+                        writeStringToFile("result", "---");
+                        break;
+                    }
+                    int* ar = new int [j];
+                    randomFillAr(ar, j);
+                    double time1 = getTime(meas::milli);
+                    mergeSort(ar, j, ascending);
+                    double time2 = getTime(meas::milli);
+                    delete [] ar;
+                    double result = time2 - time1;
+
+                    if (result > maxTime) {
+                        useMerge = false;
+                        writeStringToFile("result", "---");
+                    } else {
+                        char* time = convertDoubleToStr(result);
+                        writeStringToFile("result", time);
+                        delete[] time;
+                    }
+
+                    break;
+                }
+                case 6:{
+                    if (useQuick == false) {
+                        writeStringToFile("result", "---");
+                        break;
+                    }
+                    int* ar = new int [j];
+                    randomFillAr(ar, j);
+                    double time1 = getTime(meas::milli);
+                    quickSort(ar, j, ascending);
+                    double time2 = getTime(meas::milli);
+                    delete [] ar;
+                    double result = time2 - time1;
+
+                    if (result > maxTime) {
+                        useQuick = false;
+                        writeStringToFile("result", "---");
+                    } else {
+                        char* time = convertDoubleToStr(result);
+                        writeStringToFile("result", time);
+                        delete[] time;
+                    }
+
+                    break;
+                }
+                case 7:{
+                    if (useShell == false) {
+                        writeStringToFile("result", "---");
+                        break;
+                    }
+                    int* ar = new int [j];
+                    randomFillAr(ar, j);
+                    double time1 = getTime(meas::milli);
+                    sortShell(ar, j, ascending);
+                    double time2 = getTime(meas::milli);
+                    delete [] ar;
+                    double result = time2 - time1;
+
+                    if (result > maxTime) {
+                        useShell = false;
+                        writeStringToFile("result", "---");
+                    } else {
+                        char* time = convertDoubleToStr(result);
+                        writeStringToFile("result", time);
+                        delete[] time;
+                    }
+
+                    break;
+                }
+                case 8:{
+                    if (useCount == false) {
+                        writeStringToFile("result", "---");
+                        break;
+                    }
+                    int* ar = new int [j];
+                    randomFillAr(ar, j);
+                    double time1 = getTime(meas::milli);
+                    countSort(ar, j, ascending);
+                    double time2 = getTime(meas::milli);
+                    delete [] ar;
+                    double result = time2 - time1;
+
+                    if (result > maxTime) {
+                        useCount = false;
+                        writeStringToFile("result", "---");
+                    } else {
+                        char* time = convertDoubleToStr(result);
+                        writeStringToFile("result", time);
+                        delete[] time;
+                    }
+
+                    break;
+                }
+                }
+            }
+
+            if(stepSize == 0){
+                j +=getStep(j);
+            }
+            else{
+                j += stepSize;
+            }
+
+        }
+
+
+
+    return 0;
+}
+#endif
+
+
+
+#if NAME == 3 || NAME == 1
 int main()
 {
+
 #if NAME == 3 && COUNT == 6 && NUMBER == 2
 
 RUN_TEST(test_ring_buffer_empty);
@@ -258,3 +500,4 @@ std::cout << res << std::endl;
     return 0;
 
 }
+#endif

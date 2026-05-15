@@ -28,6 +28,8 @@ add_executable(SW2 main.cpp
     task_filo.h
     test_ring_buffer.h
     test_ring_buffer.cpp
+    HW1.h
+    HW1.cpp
 
 
 
