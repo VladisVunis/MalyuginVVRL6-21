@@ -30,6 +30,14 @@ add_executable(SW2 main.cpp
     test_ring_buffer.cpp
     HW1.h
     HW1.cpp
+    parse_fonts.h
+    parse_fonts.cpp
+    verdana_8_font.h
+    verdana_8_font.cpp
+    research_cond.h
+    research_cond.cpp
+    gnuplot.h
+    gnuplot.cpp
 
 
 

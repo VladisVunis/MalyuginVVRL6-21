@@ -1,8 +1,8 @@
 #include <iostream>
 
 #define NAME 2// RK = 1/HW = 2/ SW = 3
-#define COUNT 6 // номер работы
-#define NUMBER 2 // номер задания
+#define COUNT 2 // номер работы
+#define NUMBER 1 // номер задания
 
 /*enum NAME{
     SW = 3,
@@ -15,7 +15,7 @@
 #if NAME == 1 && COUNT == 1
 #include "box.h"
 #include "fraction.h"
-#elif NAME == 2
+#elif NAME == 2 && COUNT == 1
 #include "sorts.h"
 #include "HW1.h"
 #elif NAME == 3 && COUNT == 6
@@ -36,9 +36,294 @@
 #include "bit_operations.h"
 #elif NAME == 3 && COUNT == 1
 #include "sorts.h"
+#elif NAME == 2 && COUNT == 2
+#include "verdana_8_font.h"
+#include "parse_fonts.h"
+#include "research_cond.h"
+#include "gnuplot.h"
+
+struct ProgramOptions {
+    double R1 = 100.0;      // кОм
+    double R2 = 1.0;        // кОм
+    double C1 = 100.0;      // мкФ
+    double E1 = 10.0;       // В
+
+    double step = 0.01;
+    double freq = 1.0;
+
+    double T = 8.0 * 3.14159265358979323846;
+
+    TypeSignal signal = TypeSignal::constV;
+
+    bool charge = true;
+    bool discharge = true;
+
+    std::string jpegFile = "";
+};
+
+bool startsWith(const std::string& str, const std::string& prefix) {
+    return str.rfind(prefix, 0) == 0;
+}
+
+double parseResistanceToKOhm(const std::string& text) {
+    char last = text.back();
+    double value = std::atof(text.c_str());
+
+    if (last == 'k') {
+        return value;
+    }
+
+    if (last == 'M') {
+        return value * 1000.0;
+    }
+
+    return value / 1000.0;
+}
+
+double parseCapacitanceToUF(const std::string& text) {
+    char last = text.back();
+    double value = std::atof(text.c_str());
+
+    if (last == 'u') {
+        return value;
+    }
+
+    if (last == 'n') {
+        return value / 1000.0;
+    }
+
+    if (last == 'p') {
+        return value / 1000000.0;
+    }
+
+    return value;
+}
+
+TypeSignal parseSignal(const std::string& text) {
+    if (text == "constV") {
+        return TypeSignal::constV;
+    }
+
+    if (text == "sin" || text == "sinus") {
+        return TypeSignal::sinus;
+    }
+
+    if (text == "meandr") {
+        return TypeSignal::meandr;
+    }
+
+    if (text == "triangle") {
+        return TypeSignal::triangle;
+    }
+
+    if (text == "sawtooth") {
+        return TypeSignal::sawtooth;
+    }
+
+    if (text == "halfSin" || text == "halfSinus") {
+        return TypeSignal::halfSinus;
+    }
+
+    if (text == "rectSin" || text == "doubleHalfSinus") {
+        return TypeSignal::doubleHalfSinus;
+    }
+
+    return TypeSignal::constV;
+}
+
+bool parseBool(const std::string& text) {
+    if (text == "true" || text == "1") {
+        return true;
+    }
+
+    return false;
+}
+
+void parseArguments(int argc, char* argv[], ProgramOptions& opt) {
+    for (int i = 1; i < argc; i++) {
+        std::string arg = argv[i];
+
+        if (startsWith(arg, "-R1=")) {
+            opt.R1 = parseResistanceToKOhm(arg.substr(4));
+        }
+        else if (startsWith(arg, "-R2=")) {
+            opt.R2 = parseResistanceToKOhm(arg.substr(4));
+        }
+        else if (startsWith(arg, "-C1=")) {
+            opt.C1 = parseCapacitanceToUF(arg.substr(4));
+        }
+        else if (startsWith(arg, "-E1=")) {
+            opt.E1 = std::atof(arg.substr(4).c_str());
+        }
+        else if (startsWith(arg, "--signal=")) {
+            opt.signal = parseSignal(arg.substr(9));
+        }
+        else if (startsWith(arg, "--step=")) {
+            opt.step = std::atof(arg.substr(7).c_str());
+        }
+        else if (startsWith(arg, "--freq=")) {
+            opt.freq = std::atof(arg.substr(7).c_str());
+        }
+        else if (startsWith(arg, "-T=")) {
+            opt.T = std::atof(arg.substr(3).c_str());
+        }
+        else if (startsWith(arg, "--jpeg=")) {
+            opt.jpegFile = arg.substr(7);
+        }
+        else if (startsWith(arg, "--charge=")) {
+            opt.charge = parseBool(arg.substr(9));
+        }
+        else if (startsWith(arg, "--discharge=")) {
+            opt.discharge = parseBool(arg.substr(12));
+        }
+    }
+}
+
+std::vector<std::pair<double, double>>
+makeChargePoints(CircuitWork& circuit, double T, double step) {
+    std::vector<std::pair<double, double>> points;
+
+    for (double t = 0.0; t <= T; t += step) {
+        double voltage = circuit.getVoltageCharge(t);
+        points.push_back({t, voltage});
+    }
+
+    return points;
+}
+
+std::vector<std::pair<double, double>>
+makeDischargePoints(CircuitWork& circuit, double T, double step) {
+    std::vector<std::pair<double, double>> points;
+
+    for (double t = 0.0; t <= T; t += step) {
+        double voltage = circuit.getVoltageDischarge(t);
+        points.push_back({t, voltage});
+    }
+
+    return points;
+}
+
+std::vector<std::pair<double, double>>
+makeSignalPoints(CircuitWork& circuit, double T, double step) {
+    std::vector<std::pair<double, double>> points;
+
+    for (double t = 0.0; t <= T; t += step) {
+        double voltage = circuit.getVoltageE1(t);
+        points.push_back({t, voltage});
+    }
+
+    return points;
+}
+
+std::vector<std::pair<double, double>>
+makeCapacitorPoints(CircuitWork& circuit, double T, double step) {
+    std::vector<std::pair<double, double>> points;
+
+    circuit.resetVoltageC(0.0);
+
+    for (double t = 0.0; t <= T; t += step) {
+        circuit.getVoltage(t, true, true);
+
+        double voltage = circuit.getCurrentVoltageC();
+
+        points.push_back({t, voltage});
+    }
+
+    return points;
+}
+
 #endif
 
-#if NAME == 2
+#if NAME == 2 && COUNT == 2 && NUMBER == 1
+int main(int argc, char* argv[]) {
+    ProgramOptions opt;
+
+    parseArguments(argc, argv, opt);
+
+    CircuitWork circuit(
+        opt.C1,
+        opt.R1,
+        opt.R2,
+        opt.E1,
+        opt.signal
+        );
+
+    circuit.setStepTime(opt.step);
+    circuit.setFrequency(opt.freq);
+
+    Gnuplot gp;
+
+    if (!gp.isOpen()) {
+        std::cout << "Gnuplot не открылся" << std::endl;
+        return 1;
+    }
+
+    if (opt.signal == TypeSignal::constV) {
+        std::vector<std::pair<double, double>> chargePoints;
+        std::vector<std::pair<double, double>> dischargePoints;
+
+        if (opt.charge == true) {
+            chargePoints = makeChargePoints(circuit, opt.T, opt.step);
+        }
+
+        if (opt.discharge == true) {
+            dischargePoints = makeDischargePoints(circuit, opt.T, opt.step);
+        }
+
+        if (!opt.jpegFile.empty()) {
+            gp.saveJpeg(opt.jpegFile);
+
+            if (opt.charge && opt.discharge) {
+                gp.plotTwoPoints(chargePoints, "Charge", dischargePoints, "Discharge", "t, sec", "U, V");
+            }
+            else if (opt.charge) {
+                gp.plotPoints(chargePoints, "Charge", "t, sec", "U, V");
+            }
+            else if (opt.discharge) {
+                gp.plotPoints(dischargePoints, "Discharge", "t, sec", "U, V");
+            }
+
+            gp.command("set output");
+        }
+
+        gp.showWindow();
+
+        if (opt.charge && opt.discharge) {
+            gp.plotTwoPoints(chargePoints, "Charge", dischargePoints, "Discharge", "t, sec", "U, V");
+        }
+        else if (opt.charge) {
+            gp.plotPoints(chargePoints, "Charge", "t, sec", "U, V");
+        }
+        else if (opt.discharge) {
+            gp.plotPoints(dischargePoints, "Discharge", "t, sec", "U, V");
+        }
+    }
+    else {
+        double T = 3.0 / opt.freq;
+
+        std::vector<std::pair<double, double>> signalPoints =
+            makeSignalPoints(circuit, T, opt.step);
+
+        std::vector<std::pair<double, double>> capacitorPoints =
+            makeCapacitorPoints(circuit, T, opt.step);
+
+        if (!opt.jpegFile.empty()) {
+            gp.saveJpeg(opt.jpegFile);
+
+            gp.plotTwoPoints(signalPoints, "E1(t)", capacitorPoints, "Uc(t)", "t, sec", "U, V");
+
+            gp.command("set output");
+        }
+
+        gp.showWindow();
+
+        gp.plotTwoPoints(signalPoints, "E1(t)", capacitorPoints, "Uc(t)", "t, sec", "U, V");
+    }
+
+    return 0;
+}
+#endif
+#if NAME == 2 && COUNT == 1
 int main(int argc, char* argv[])
 {
     int minSize = 50;
@@ -277,9 +562,13 @@ int main(int argc, char* argv[])
 
 
 
-#if NAME == 3 || NAME == 1
+#if NAME == 3 || NAME == 1 || (NAME == 2 && COUNT == 2 && NUMBER == 2)
 int main()
 {
+
+#if NAME == 2 && COUNT == 2 && NUMBER == 2
+parse_font('9', 'L', '~');
+#endif
 
 #if NAME == 3 && COUNT == 6 && NUMBER == 2
 
