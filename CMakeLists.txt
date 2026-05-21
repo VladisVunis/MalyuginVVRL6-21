@@ -38,6 +38,10 @@ add_executable(SW2 main.cpp
     research_cond.cpp
     gnuplot.h
     gnuplot.cpp
+    double_linked_list.h
+    double_linked_list.cpp
+    rk_2.h
+    rk_2.cpp
 
 
 

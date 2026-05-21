@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define NAME 2// RK = 1/HW = 2/ SW = 3
+#define NAME 1// RK = 1/HW = 2/ SW = 3
 #define COUNT 2 // номер работы
 #define NUMBER 1 // номер задания
 
@@ -15,6 +15,12 @@
 #if NAME == 1 && COUNT == 1
 #include "box.h"
 #include "fraction.h"
+#elif NAME == 1 && COUNT == 2
+#include "rk_2.h"
+
+#include <iostream>
+#include <vector>
+#include <utility>
 #elif NAME == 2 && COUNT == 1
 #include "sorts.h"
 #include "HW1.h"
@@ -565,6 +571,26 @@ int main(int argc, char* argv[])
 #if NAME == 3 || NAME == 1 || (NAME == 2 && COUNT == 2 && NUMBER == 2)
 int main()
 {
+#if NAME == 1 && COUNT == 2
+    ProcessPulses pulses("current_pulse.bin");
+
+    std::cout << "Count: " << pulses.getCountPulse() << std::endl;
+
+    std::vector<std::pair<double, double>> pulse = pulses.getPulse(2, false);
+
+    Gnuplot gp;
+
+    if (!gp.isOpen()) {
+        std::cout << "Gnuplot не открылся" << std::endl;
+        return 1;
+    }
+
+    gp.buildPulse(pulse, SaveTo::show);
+
+    std::cout << "График построен" << std::endl;
+
+    return 0;
+#endif
 
 #if NAME == 2 && COUNT == 2 && NUMBER == 2
 parse_font('9', 'L', '~');

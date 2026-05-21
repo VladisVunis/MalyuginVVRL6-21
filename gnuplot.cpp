@@ -1,4 +1,4 @@
-#include "gnuplot.h"
+/*#include "gnuplot.h"
 
 Gnuplot::Gnuplot() {
 #ifdef _WIN32
@@ -81,3 +81,4 @@ void Gnuplot::plotTwoPoints(const std::vector<std::pair<double, double>>& points
 
     fflush(file);
 }
+*/
