@@ -1,7 +1,7 @@
 #include <iostream>
 
-#define NAME 1// RK = 1/HW = 2/ SW = 3
-#define COUNT 2 // номер работы
+#define NAME 2// RK = 1/HW = 2/ SW = 3
+#define COUNT 1 // номер работы
 #define NUMBER 1 // номер задания
 
 /*enum NAME{

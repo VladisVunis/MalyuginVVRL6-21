@@ -1,0 +1,21 @@
+# ninja log v7
+109	399	8015115763992834	CMakeFiles/SW2.dir/sorts.cpp.obj	fbee264cd524c4b3
+147	407	8015115764367376	CMakeFiles/SW2.dir/ring_buffer.cpp.obj	80bf6730c98f4ab3
+181	408	8015115764712142	CMakeFiles/SW2.dir/task_filo.cpp.obj	643f01cf8617cc5
+295	430	8015115765847793	CMakeFiles/SW2.dir/verdana_8_font.cpp.obj	ff798fa879fa270c
+340	479	8015115766295964	CMakeFiles/SW2.dir/gnuplot.cpp.obj	c5d0e985571357e2
+36	570	8015115763264946	CMakeFiles/SW2.dir/bit_operations.cpp.obj	68adc61f66a4f76a
+55	602	8015115763453289	CMakeFiles/SW2.dir/file_operations.cpp.obj	43e882aedf9a4426
+81	635	8015115763714250	CMakeFiles/SW2.dir/box.cpp.obj	db1c759956a46f95
+129	649	8015115764188575	CMakeFiles/SW2.dir/fraction.cpp.obj	f7473b65576dbb5a
+165	678	8015115764556423	CMakeFiles/SW2.dir/filo.cpp.obj	7ac5062a2e84f92e
+199	704	8015115764894470	CMakeFiles/SW2.dir/test.cpp.obj	bdd14f2a4b94edab
+356	733	8015115766468219	CMakeFiles/SW2.dir/double_linked_list.cpp.obj	55ed5cf0c9c0b9d8
+4	760	8015115762948310	CMakeFiles/SW2.dir/main.cpp.obj	4cf1774600861a96
+215	791	8015115765051496	CMakeFiles/SW2.dir/test_ring_buffer.cpp.obj	3c50195f7e48d8f8
+250	800	8015115765397773	CMakeFiles/SW2.dir/parse_fonts.cpp.obj	738ad8f72ec63a10
+233	910	8015115765232910	CMakeFiles/SW2.dir/HW1.cpp.obj	f004d97e389501b6
+310	981	8015115766007141	CMakeFiles/SW2.dir/research_cond.cpp.obj	39dca89924f41d8e
+373	1121	8015115766630334	CMakeFiles/SW2.dir/rk_2.cpp.obj	ff3fda3fad47cd06
+9	414	8015115924585192	CMakeFiles/SW2.dir/main.cpp.obj	4cf1774600861a96
+415	651	8015115928638240	SW2.exe	f4eb75314a2b22dd
